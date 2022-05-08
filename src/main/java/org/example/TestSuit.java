@@ -26,12 +26,12 @@ public class TestSuit {
         //enter lastname
         driver.findElement(By.id("LastName")).sendKeys("LastNameTest");
 
-        // enter email....
+        // enter email
         driver.findElement(By.id("Email")).sendKeys("demo@nopcommerce.com");
 
-        // enter password....
+        // enter password
         driver.findElement(By.name("Password")).sendKeys("Test123");
-        // enter confirm password....
+        // enter confirm password
         driver.findElement(By.name("ConfirmPassword")).sendKeys("Test123");
 
     }
