@@ -33,7 +33,7 @@ public class TestSuit {
 
         driver.findElement(By.name("Password")).sendKeys("Test123");
 
-        // enter confirm password
+        // enter confirm password........
         driver.findElement(By.name("ConfirmPassword")).sendKeys("Test123");
 
     }
