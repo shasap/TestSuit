@@ -25,7 +25,7 @@ public class TestSuit {
 
     protected static WebDriver driver;
 
-    //------------------------------------------------Open Browser-----------------------------------------------
+    //-----------------------------------------Open Browser-----------------------------------------------
     @BeforeMethod
     public void openUrlInBrowser(){
 
@@ -41,15 +41,6 @@ public class TestSuit {
 
         //Open Web page
         driver.get("https://demo.nopcommerce.com/");
-
-    }
-
-    //------------------------------------------Close Browser-----------------------------------------------
-    @AfterMethod
-    public void closeBrowser(){
-
-        // Close browser
-        driver.quit();
 
     }
 
@@ -238,6 +229,48 @@ public class TestSuit {
         Assert.assertEquals(actualBuildYourOwnComputer,expectedBuildYourOwnComputer,"Build your computer not visible");
 
     }
+
+    //-----------------------User should be able to see price in selected currency-------------------------
+    @Test
+    public void userShouldBeAbleToSeePriceInSelectedCurrency(){
+
+        //User should be able to see product price in US dollar as US Dollar is selected currency
+
+        //Expected price in USD for Build your own computer
+        String expectedPriceInUSD = "$1,200.00";
+
+        //Actual price in USD for Build your own computer
+        String actualPriceInUSD = getTextFromElement(By.xpath("//span[.=\"$1,200.00\"]"));
+
+        // Verify 'Build your own computer' - price in USD
+        Assert.assertEquals(actualPriceInUSD,expectedPriceInUSD,"Product price is not in US Dollar");
+
+        // Change currency to Euro or select currency as Euro
+        Select euro = new Select(driver.findElement(By.id("customerCurrency")));
+        euro.selectByVisibleText("Euro");
+
+        // Expected price in Euro for - Build your own computer
+        String expectedPriceInEuro = "€1032.00";
+
+        // Actual price in Euro for Build your own computer
+        String actualPriceInEuro = getTextFromElement(By.xpath("//span[.='€1032.00']"));
+
+        // Verify price in Euro for 'Build your own computer'
+        Assert.assertEquals(actualPriceInEuro,expectedPriceInEuro,"Product price is not in Euro");
+
+
+
+    }
+
+    //------------------------------------------Close Browser----------------------------------------------
+    @AfterMethod
+    public void closeBrowser(){
+
+        // Close browser
+        driver.quit();
+
+    }
+
 
 
 
